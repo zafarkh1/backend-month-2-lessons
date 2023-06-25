@@ -1,7 +1,5 @@
-import { config } from "dotenv";
+import {config} from 'dotenv'
 
-config();
+config()
 
-export const PORT = process.env.APP_PORT
-  ? parseInt(process.env.APP_PORT, 10)
-  : 9000;
+export const APP_PORT = process.env.APP_PORT ? parseInt(process.env.APP_PORT) : 9000
