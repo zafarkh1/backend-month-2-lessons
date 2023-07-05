@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<h1>Books Page</h1>
+
+	<form action="/books" method="POST">
+		<input type="text" placeholder="title" name="title">
+		<input type="number" placeholder="price" name="price">
+		<button type="submit">Send</button>
+	</form>
+
+	<ul>
+		<% books.forEach( e=> { %>
+			<li>
+				<h4><%= e.title %></h4>
+				<p><%= e.price %></p>
+			</li>
+			<% }) %>
+	</ul>
+</body>
+
+</html>
