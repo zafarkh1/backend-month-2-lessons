@@ -1,20 +1,21 @@
 import express from "express";
-import { PORT } from "./config/app.config.js";
-import {
-  bookGetController,
-  bookCreateController,
-  bookUpdateController,
-  bookDeleteController,
-} from "./controllers/book.controller.js";
+import cors from 'cors'
+import { APP_PORT } from "./config/server.config.js";
+import routes from './routes/course.route.js'
+
 
 const app = express();
 
 app.use(express.json());
+app.use(cors({
+	origin: '*'
+}))
+app.use('/api/v1', routes)
 
-app
-  .get("/books", bookGetController)
-  .post("/books", bookCreateController)
-  .patch("/books/:id", bookUpdateController)
-  .delete("/books/:id", bookDeleteController);
+app.all("/*", (req, res) => {
+  res.status(404).send({
+    message: `${req.url} not found`,
+  });
+});
 
-app.listen(PORT, console.log("waiting ..."));
+app.listen(APP_PORT, console.log("listening ..."));
