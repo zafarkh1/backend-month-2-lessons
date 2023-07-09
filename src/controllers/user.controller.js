@@ -1,3 +1,6 @@
+import { readFileCustom } from "../helpers/read-helper.js";
+
 export const userController = (req, res) => {
-	res.render('index')
-}
+	const allUsers = readFileCustom('users.json')
+  res.render("index", {data: allUsers});
+};
