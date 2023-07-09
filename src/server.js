@@ -1,17 +1,16 @@
-import express from "express";
-import {APP_PORT} from './config/app.config.js'
-import routes from './route/book.route.js'
+import express from 'express'
 import {join} from 'path'
+import routes from './routes/route.js'
 
-const app = express();
+const APP_PORT = 2024
+
+const app = express()
+
+app.set('view engine', 'ejs')
+app.set('views', join(process.cwd(), 'src', 'views'))
 
 app.use(express.urlencoded())
 app.use('/api', routes)
-
-app.use('/public', express.static(join(process.cwd(), 'src', 'public')))
-
-app.set('view engine', 'ejs')
-app.set('views', join(process.cwd(), 'src', 'view'))
-
+app.use('/assets', express.static(join(process.cwd(), 'src', 'public')))
 
 app.listen(APP_PORT, console.log('listening ...'))
