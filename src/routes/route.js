@@ -1,13 +1,19 @@
-import {Router} from 'express'
-import {fileUploadController} from '../controllers/file-upload.controller.js'
-import {userController} from '../controllers/user.controller.js'
-import {storage} from '../helpers/multer.helper.js'
-import multer from 'multer'
+import { Router } from "express";
+import {
+  authController,
+  authPageController,
+} from "../controllers/auth.controller.js";
+import { userController } from "../controllers/user.controller.js";
+import { adminController } from "../controllers/admin.controller.js";
+import { verifyMiddleware } from "../middlewares/verify-access.middleware.js";
+import { homeController, homePageController } from "../controllers/home-controller.js";
 
-const router = Router()
-
-const upload = multer({storage})
+const router = Router();
 
 export default router
-.post('/file-upload', upload.array('file') ,fileUploadController)
-.get('/user', userController)
+  .get("/user", verifyMiddleware, userController)
+  .get("/admin", verifyMiddleware, adminController)
+  .get("/auth", authPageController)
+  .post("/auth", authController)
+  .post("/home", homeController)
+  .get("/home", homePageController);

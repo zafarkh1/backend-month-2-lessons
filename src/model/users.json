@@ -1,9 +1,14 @@
 [
-    {
-        "id": 1,
-        "username": "dsDFRfagr",
-        "images": [
-            "\\uploads\\968d5422-9913-4f24-a4ab-9e93a0b08964.webp"
-        ]
-    }
+  {
+    "id": 1,
+    "username": "Zafar",
+    "password": "zafar_kh",
+    "role": "super-admin"
+  },
+  {
+    "id": 2,
+    "username": "Someone",
+    "password": "nnu",
+    "role": "user"
+  }
 ]
